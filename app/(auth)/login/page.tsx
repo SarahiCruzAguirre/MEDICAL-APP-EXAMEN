@@ -1,15 +1,24 @@
 'use client'
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 
+//* costumer side
+
+import Spline from '@splinetool/react-spline'
+import { useState } from 'react' //hook for the local manage, keep the form
+import { useRouter } from 'next/navigation' //hook of next for the navigation betweent pages
+
+//login form
 export default function LoginPage() {
   const router = useRouter()
+
+  //keep all inputs and states of the form
   const [form, setForm] = useState({ email: '', password: '' })
   const [errors, setErrors] = useState({ email: '', password: '' })
   const [serverError, setServerError] = useState('')
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
 
+
+  //validation of the form 
   function validate() {
     const e = { email: '', password: '' }
     let ok = true
@@ -20,36 +29,49 @@ export default function LoginPage() {
     return ok
   }
 
+  //when the user make submit call the api and validate to connect with the back
+
   async function handleSubmit(ev: React.FormEvent) {
-    ev.preventDefault()
-    if (!validate()) return
+    ev.preventDefault() //no load
+    if (!validate()) return //if we had error dont make fecht
     setLoading(true)
     setServerError('')
     try {
+
+      //make the petition and send it in json form 
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       })
       const data = await res.json()
+
+      //if the fuction fails show the error
       if (!res.ok) { setServerError(data.error ?? 'Error al iniciar sesion'); return }
+
+      //if the login is om redirect to the dashboard
       router.push(data.role === 'ADMIN' ? '/dashboard/doctors' : '/dashboard/appointments')
     } catch { setServerError('Error de conexion.') }
     finally { setLoading(false) }
   }
 
+  //this is the main mold to the login where we had the inputs and styles of the aplication
+  //in the finally this form redirect to the register when is necesary and we had a animation with spline for the design of the page
   return (
     <div className="min-h-screen flex bg-zinc-950">
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 flex-col justify-between p-12 border-r border-zinc-800">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-yellow-500 rounded-xl flex items-center justify-center text-xl">X</div>
-          <span className="text-yellow-400 font-bold text-xl">MediCitas</span>
+          <div className="w-10 h-10 rounded-xl overflow-hidden bg-white"><img src="/logos/horus.webp" alt="logo" className="w-full h-full object-contain" /></div>
+          <span className="text-yellow-400 font-bold text-xl">Horus Braslet</span>
         </div>
-        <div>
+        <div className="relative z-10">
+          <div className="w-72 h-72 mb-6 mx-auto">
+            <Spline scene="https://prod.spline.design/KD73xAxrvGjYuqD1/scene.splinecode" />
+          </div>
           <h2 className="text-4xl font-bold text-white leading-tight mb-4">Tu salud, nuestra prioridad</h2>
           <p className="text-zinc-400 text-lg mb-10">Gestiona tus citas medicas de forma simple y segura.</p>
         </div>
-        <p className="text-zinc-600 text-sm">2025 MediCitas.</p>
+        <p className="text-zinc-600 text-sm">2025 Horus Braslet.</p>
       </div>
       <div className="flex-1 flex items-center justify-center p-6 bg-zinc-950">
         <div className="w-full max-w-md">

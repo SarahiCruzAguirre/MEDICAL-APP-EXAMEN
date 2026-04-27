@@ -79,15 +79,16 @@ export default function DoctorsPage() {
   const filtered = doctors.filter(d => d.name.toLowerCase().includes(search.toLowerCase()) || d.specialty.toLowerCase().includes(search.toLowerCase()))
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <nav className="bg-white border-b border-slate-100 sticky top-0 z-10">
+    <div className="min-h-screen bg-zinc-950">
+      <nav className="bg-zinc-900 border-b border-zinc-800 sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center text-lg">🏥</div>
-            <div><span className="font-bold text-slate-800">MediCitas</span><span className="text-slate-400 text-sm ml-2">/ Médicos</span></div>
+<div className="w-9 h-9 rounded-xl overflow-hidden bg-white">
+  <img src="/logos/horus.webp" alt="logo" className="w-full h-full object-contain" />
+</div>            <div><span className="font-bold text-white">Horus Braslet</span><span className="text-zinc-500 text-sm ml-2">/ Médicos</span></div>
           </div>
           <div className="flex items-center gap-3">
-            <a href="/dashboard/appointments" className="text-sm text-slate-500 hover:text-blue-600 font-medium transition">Citas</a>
+            <a href="/dashboard/appointments" className="text-sm text-zinc-400 hover:text-yellow-400 font-medium transition">Citas</a>
             <button onClick={handleLogout} className="btn-danger text-sm py-1.5 px-3">Cerrar sesión</button>
           </div>
         </div>
@@ -95,8 +96,8 @@ export default function DoctorsPage() {
       <div className="max-w-6xl mx-auto px-6 py-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-slate-800">Gestión de Médicos</h1>
-            <p className="text-slate-500 mt-1">{doctors.length} médico{doctors.length !== 1 ? 's' : ''} registrado{doctors.length !== 1 ? 's' : ''}</p>
+            <h1 className="text-2xl font-bold text-white">Gestión de Médicos</h1>
+            <p className="text-zinc-400 mt-1">{doctors.length} médico{doctors.length !== 1 ? 's' : ''} registrado{doctors.length !== 1 ? 's' : ''}</p>
           </div>
           <button onClick={() => { handleCancel(); setShowForm(true) }} className="btn-primary flex items-center gap-2">
             <span className="text-lg">+</span> Nuevo Médico
@@ -106,8 +107,8 @@ export default function DoctorsPage() {
         {showForm && (
           <div className="card mb-6 border-blue-100">
             <div className="flex items-center justify-between mb-5">
-              <h2 className="text-lg font-bold text-slate-800">{editing ? '✏️ Editar Médico' : '➕ Nuevo Médico'}</h2>
-              <button onClick={handleCancel} className="text-slate-400 hover:text-slate-600 text-xl font-bold">×</button>
+              <h2 className="text-lg font-bold text-white">{editing ? '✏️ Editar Médico' : '➕ Nuevo Médico'}</h2>
+              <button onClick={handleCancel} className="text-zinc-500 hover:text-slate-600 text-xl font-bold">×</button>
             </div>
             <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
@@ -153,24 +154,24 @@ export default function DoctorsPage() {
         </div>
 
         {fetchLoading ? (
-          <div className="text-center py-20 text-slate-400"><div className="text-4xl mb-3">⏳</div><p>Cargando médicos...</p></div>
+          <div className="text-center py-20 text-zinc-500"><div className="text-4xl mb-3">⏳</div><p>Cargando médicos...</p></div>
         ) : filtered.length === 0 ? (
-          <div className="text-center py-20 text-slate-400"><div className="text-4xl mb-3">👨‍⚕️</div><p className="font-medium">No hay médicos registrados</p><p className="text-sm mt-1">Crea el primero arriba</p></div>
+          <div className="text-center py-20 text-zinc-500"><div className="text-4xl mb-3">👨‍⚕️</div><p className="font-medium">No hay médicos registrados</p><p className="text-sm mt-1">Crea el primero arriba</p></div>
         ) : (
           <div className="grid gap-4">
             {filtered.map(doc => (
               <div key={doc.id} className="card flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:shadow-md transition">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-xl flex-shrink-0">👨‍⚕️</div>
+                  <div className="w-12 h-12 bg-zinc-800 rounded-xl flex items-center justify-center text-xl flex-shrink-0">👨‍⚕️</div>
                   <div>
                     <div className="flex items-center gap-2 flex-wrap">
-                      <p className="font-bold text-slate-800">{doc.name}</p>
+                      <p className="font-bold text-white">{doc.name}</p>
                       <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${doc.available ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                         {doc.available ? '● Disponible' : '● No disponible'}
                       </span>
                     </div>
-                    <p className="text-blue-600 font-medium text-sm mt-0.5">{doc.specialty}</p>
-                    <div className="flex items-center gap-4 mt-1 text-slate-400 text-sm">
+                    <p className="text-yellow-400 font-medium text-sm mt-0.5">{doc.specialty}</p>
+                    <div className="flex items-center gap-4 mt-1 text-zinc-500 text-sm">
                       <span>📅 {doc.experience} años</span><span>📞 {doc.contact}</span>
                     </div>
                   </div>
@@ -179,7 +180,7 @@ export default function DoctorsPage() {
                   <button onClick={() => toggleAvailable(doc)} className={`text-xs px-3 py-1.5 rounded-lg border font-medium transition ${doc.available ? 'border-orange-300 text-orange-600 hover:bg-orange-50' : 'border-green-300 text-green-600 hover:bg-green-50'}`}>
                     {doc.available ? 'Deshabilitar' : 'Habilitar'}
                   </button>
-                  <button onClick={() => handleEdit(doc)} className="text-xs px-3 py-1.5 rounded-lg border border-blue-300 text-blue-600 hover:bg-blue-50 font-medium transition">✏️ Editar</button>
+                  <button onClick={() => handleEdit(doc)} className="text-xs px-3 py-1.5 rounded-lg border border-blue-300 text-yellow-400 hover:bg-zinc-800 font-medium transition">✏️ Editar</button>
                   <button onClick={() => handleDelete(doc.id)} className="text-xs px-3 py-1.5 rounded-lg border border-red-300 text-red-600 hover:bg-red-50 font-medium transition">🗑️ Eliminar</button>
                 </div>
               </div>
@@ -190,3 +191,6 @@ export default function DoctorsPage() {
     </div>
   )
 }
+
+
+

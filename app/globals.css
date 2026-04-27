@@ -10,3 +10,63 @@
   .input-error { @apply border-red-500 focus:ring-red-500; }
   .card { @apply bg-zinc-900 rounded-2xl shadow-sm border border-zinc-800 p-6; }
 }
+
+/* FullCalendar dark theme */
+.fc {
+  --fc-border-color: #3f3f46;
+  --fc-daygrid-event-dot-width: 8px;
+  --fc-today-bg-color: rgba(234, 179, 8, 0.1);
+  --fc-neutral-bg-color: #18181b;
+  --fc-list-event-hover-bg-color: #27272a;
+  --fc-page-bg-color: #09090b;
+  --fc-neutral-text-color: #a1a1aa;
+  --fc-event-text-color: #000;
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th,
+.fc-theme-standard .fc-scrollgrid {
+  border-color: #3f3f46;
+}
+
+.fc .fc-col-header-cell {
+  background-color: #18181b;
+  color: #a1a1aa;
+}
+
+.fc .fc-daygrid-day-number {
+  color: #d4d4d8;
+}
+
+.fc .fc-button {
+  background-color: #27272a;
+  border-color: #3f3f46;
+  color: #d4d4d8;
+}
+
+.fc .fc-button:hover {
+  background-color: #3f3f46;
+}
+
+.fc .fc-button-primary:not(.fc-button-active) {
+  background-color: #27272a;
+  border-color: #3f3f46;
+}
+
+.fc .fc-button-active {
+  background-color: #eab308 !important;
+  border-color: #eab308 !important;
+  color: #000 !important;
+}
+
+.fc .fc-toolbar-title {
+  color: #ffffff;
+}
+
+.fc .fc-daygrid-day {
+  background-color: #4a4aa9;
+}
+
+.fc .fc-day-other .fc-daygrid-day-number {
+  color: #ffffff;
+}
