@@ -1,3 +1,4 @@
+﻿export const dynamic = 'force-dynamic'
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { signAccess, signRefresh } from '@/lib/jwt'
@@ -22,3 +23,4 @@ export async function POST(req: NextRequest) {
     return res
   } catch (e) { console.error('[LOGIN]', e); return NextResponse.json({ error: 'Error interno' }, { status: 500 }) }
 }
+

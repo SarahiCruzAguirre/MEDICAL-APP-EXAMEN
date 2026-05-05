@@ -1,3 +1,4 @@
+﻿export const dynamic = 'force-dynamic'
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { logAction } from '@/lib/logger'
@@ -12,3 +13,4 @@ export async function POST(req: NextRequest) {
   res.cookies.delete('refresh_token')
   return res
 }
+

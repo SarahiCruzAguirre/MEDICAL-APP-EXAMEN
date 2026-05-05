@@ -1,3 +1,4 @@
+﻿export const dynamic = 'force-dynamic'
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { signAccess, verifyRefresh } from '@/lib/jwt'
@@ -18,3 +19,4 @@ export async function GET(req: NextRequest) {
     return res
   } catch { return NextResponse.redirect(new URL('/login', req.url)) }
 }
+

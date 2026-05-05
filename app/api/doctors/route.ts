@@ -1,3 +1,4 @@
+﻿export const dynamic = 'force-dynamic'
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { logAction } from '@/lib/logger'
@@ -21,3 +22,4 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(doctor, { status: 201 })
   } catch (e) { return NextResponse.json({ error: 'Error al crear médico' }, { status: 500 }) }
 }
+
