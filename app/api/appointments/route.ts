@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
     const { doctorId, date } = await req.json()
     if (!doctorId || !date) return NextResponse.json({ error: 'Médico y fecha requeridos' }, { status: 400 })
     const patient = await prisma.patient.findUnique({ where: { userId } })
-    if (!patient) return NextResponse.json({ error: 'Paciente no encontrado' }, { status: 404 })
+    if (!patient) return NextResponse.json([], { status: 200 })
     const conflict = await prisma.appointment.findFirst({ where: { doctorId, date: new Date(date), status: { not: 'CANCELLED' } } })
     if (conflict) return NextResponse.json({ error: 'Horario no disponible, elige otro' }, { status: 409 })
     const appointment = await prisma.appointment.create({
