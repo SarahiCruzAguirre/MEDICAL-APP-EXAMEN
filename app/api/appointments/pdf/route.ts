@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+export const dynamic = 'force-dynamic'
 import { generateAppointmentPDF } from '@/lib/pdf'
 import { prisma } from '@/lib/prisma'
 
