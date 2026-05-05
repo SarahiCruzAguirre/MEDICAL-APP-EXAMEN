@@ -49,12 +49,19 @@ export default function AppointmentsPage() {
   // fetches doctors and appointments in parallel using Promise.all
   // faster than fetching one after the other
   async function fetchData() {
-    setFetchLoading(true)
-    const [docRes, appRes] = await Promise.all([fetch('/api/doctors'), fetch('/api/appointments')])
-    setDoctors(await docRes.json())
-    setAppointments(await appRes.json())
-    setFetchLoading(false)
-  }
+  setFetchLoading(true)
+  const [docRes, appRes] = await Promise.all([
+    fetch('/api/doctors'), 
+    fetch('/api/appointments')
+  ])
+  
+  const docData = await docRes.json()
+  const appData = await appRes.json()
+  
+  setDoctors(Array.isArray(docData) ? docData : [])
+  setAppointments(Array.isArray(appData) ? appData : [])
+  setFetchLoading(false)
+}
 
   // runs only once when the component mounts in the DOM
   // empty array [] means no dependencies - won't re-run on state changes
